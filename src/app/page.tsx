@@ -7,9 +7,9 @@ export default async function Page() {
     <div className="w-full h-full flex flex-col justify-center items-center p-10">
       <h1 className="text-base font-light my-5">Todo application</h1>
       <div className="flex flex-col space-y-4 justify-center items-center w-full">
-        {todos.map((todo, i) => (
+        {todos.map((todo) => (
           <div
-            key={i}
+            key={todo.id}
             className="bg-white text-lg text-black p-4 rounded-xl w-full"
           >
             <>{todo.content}</>

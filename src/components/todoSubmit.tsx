@@ -1,25 +1,26 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface Props {}
 
 const TodoSubmit = (props: Props) => {
+  const router = useRouter();
   const [content, setContent] = useState("");
   const saveTodo = async () => {
-    console.log(1);
     try {
-      const response = await axios.post("/todos/", { content });
-      console.log("response:", response.data);
+      await axios.post("/todos/", { content });
+      setContent("");
+      router.refresh();
     } catch (e) {
-      console.log("err:", e);
+      console.error("err:", e);
     }
   };
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        console.log(content);
         await saveTodo();
       }}
       className="w-full flex item-center space-x-2"
